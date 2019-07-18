@@ -26,6 +26,7 @@ public class Customers
 
     //many customers to one agent
     @ManyToOne
+    @JoinColumn(name="agentCode", nullable=false)
     private Agents agent;
     //one customer to many orders
     @OneToMany(mappedBy = "customers")
