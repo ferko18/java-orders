@@ -1,9 +1,9 @@
 package com.lambda.orders.services;
 
-import com.lambda.orders.model.Agents;
-import com.lambda.orders.model.Customers;
 import com.lambda.orders.repos.CustomerRepository;
 import com.lambda.orders.repos.OrderRepository;
+import com.lambda.orders.models.Agent;
+import com.lambda.orders.models.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,12 +20,12 @@ public class CustomerServiceImpl implements CustomerService
     private OrderRepository orderRepo;
 
     @Override
-    public ArrayList<Customers> findAll()
+    public ArrayList<Customer> findAll()
     {
-        ArrayList<Customers> customers = new ArrayList<>();
+        ArrayList<Customer> customers = new ArrayList<>();
         customerRepo.findAll().iterator().forEachRemaining(c -> customers.add(c));
 
-        for (Customers c: customers) {
+        for (Customer c: customers) {
             c.setOrders(orderRepo.findAllByCustomer(c));
         }
 
@@ -33,20 +33,20 @@ public class CustomerServiceImpl implements CustomerService
     }
 
     @Override
-    public Customers findCustomerByName(String custName)
+    public Customer findCustomerByName(String custName)
     {
         return customerRepo.findCustomerByCustName(custName);
     }
 
     @Override
-    public ArrayList<Customers> findAllByAgent(Agents agent)
+    public ArrayList<Customer> findAllByAgent(Agent agent)
     {
         return null;
     }
 
     @Transactional
     @Override
-    public Customers save(Customers customer)
+    public Customer save(Customer customer)
     {
         customerRepo.save(customer);
 
@@ -55,7 +55,7 @@ public class CustomerServiceImpl implements CustomerService
 
     @Transactional
     @Override
-    public Customers update(Customers customer, long custCode)
+    public Customer update(Customer customer, long custCode)
     {
         return null;
     }

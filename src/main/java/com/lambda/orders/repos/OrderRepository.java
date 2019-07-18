@@ -1,12 +1,12 @@
 package com.lambda.orders.repos;
 
-import com.lambda.orders.model.Customers;
-import com.lambda.orders.model.Orders;
+import com.lambda.orders.models.Customer;
+import com.lambda.orders.models.Order;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface OrderRepository extends CrudRepository<Orders, Long>
+public interface OrderRepository extends CrudRepository<Order, Long>
 {
-    List<Orders> findAllByCustomer(Customers customer);
+    List<Order> findAllByCustomer(Customer customer);
 }

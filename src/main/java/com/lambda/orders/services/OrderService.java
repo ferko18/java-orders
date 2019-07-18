@@ -1,17 +1,17 @@
 package com.lambda.orders.services;
 
-import com.lambda.orders.model.Agents;
-import com.lambda.orders.model.Customers;
-import com.lambda.orders.model.Orders;
+import com.lambda.orders.models.Agent;
+import com.lambda.orders.models.Customer;
+import com.lambda.orders.models.Order;
 
 import java.util.ArrayList;
 
 public interface OrderService
 {
-    Customers save(Orders order);
-    ArrayList<Orders> findAll();
-    ArrayList<Orders> findAllByAgent(Agents agent);
-    ArrayList<Orders> findAllByCustomer(Customers customer);
-    Customers update(Orders order, long ordCode);
+    Customer save(Order order);
+    ArrayList<Order> findAll();
+    ArrayList<Order> findAllByAgent(Agent agent);
+    ArrayList<Order> findAllByCustomer(Customer customer);
+    Customer update(Order order, long ordCode);
     void delete(long ordCode);
 }

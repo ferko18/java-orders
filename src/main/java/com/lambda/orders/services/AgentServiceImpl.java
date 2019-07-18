@@ -1,51 +1,52 @@
 package com.lambda.orders.services;
 
-import com.lambda.orders.model.Agents;
-import com.lambda.orders.model.Customers;
-import com.lambda.orders.model.Orders;
 import com.lambda.orders.repos.AgentRepository;
+import com.lambda.orders.models.Agent;
+import com.lambda.orders.models.Customer;
+import com.lambda.orders.models.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import javax.transaction.Transactional;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
+
+
 @Transactional
 @Service(value="agentService")
 public class AgentServiceImpl implements AgentService
-
 {
     @Autowired
     private AgentRepository agentRepo;
 
     @Override
-    public Customers save(Agents agent)
+    public Customer save(Agent agent)
     {
         return null;
     }
 
     @Override
-    public Agents findByCustomer(Customers customer)
+    public ArrayList<Agent> findAll()
     {
-        return null;
-    }
-
-    @Override
-    public ArrayList<Agents> findAll()
-    {
-        ArrayList<Agents> agents = new ArrayList<>();
-        agentRepo.findAll().iterator().forEachRemaining(agent -> agents.add(agent));
+        ArrayList<Agent> agents = new ArrayList<>();
+        agentRepo.findAll().iterator().forEachRemaining(a -> agents.add(a));
 
         return agents;
     }
 
     @Override
-    public Agents findByOrder(Orders order)
+    public Agent findByCustomer(Customer customer)
     {
         return null;
     }
 
     @Override
-    public Customers update(Agents agent, long agentCode)
+    public Agent findByOrder(Order order)
+    {
+        return null;
+    }
+
+    @Override
+    public Customer update(Agent agent, long agentCode)
     {
         return null;
     }

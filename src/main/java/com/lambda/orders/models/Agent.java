@@ -1,4 +1,6 @@
-package com.lambda.orders.model;
+package com.lambda.orders.models;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -6,28 +8,33 @@ import java.util.List;
 
 @Entity
 @Table(name="agents")
-public class Agents
+public class Agent
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long agentCode;
-
-    @Column(unique = true, nullable = false)
-    private String agentName;
-    private String workingArea;
+    private String agentName, workingArea;
     private double commission;
-    @Column(unique = true, nullable = false)
-    private String phone;
-    private String country;
+    private String phone, country;
 
-    //one agent many customers
-    @OneToMany(mappedBy = "agents")
-    private List<Customers> customers = new ArrayList<>();
+    @OneToMany(mappedBy="agent",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    @JsonIgnoreProperties({"agent", "orders"})
+    private List<Customer> customers = new ArrayList<>();
 
-    @OneToMany(mappedBy = "agents")
-    private List<Orders> orders = new ArrayList<>();
 
-    public Agents(String agentName, String workingArea, double commission, String phone, String country)
+    @OneToMany(mappedBy="agent",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    @JsonIgnoreProperties({"customer", "agent"})
+    private List<Order> orders = new ArrayList<>();
+
+    public Agent()
+    {
+    }
+
+    public Agent(String agentName, String workingArea, double commission, String phone, String country)
     {
         this.agentName = agentName;
         this.workingArea = workingArea;
@@ -96,22 +103,22 @@ public class Agents
         this.country = country;
     }
 
-    public List<Customers> getCustomers()
+    public List<Customer> getCustomers()
     {
         return customers;
     }
 
-    public void setCustomers(List<Customers> customers)
+    public void setCustomers(List<Customer> customers)
     {
         this.customers = customers;
     }
 
-    public List<Orders> getOrders()
+    public List<Order> getOrders()
     {
         return orders;
     }
 
-    public void setOrders(List<Orders> orders)
+    public void setOrders(List<Order> orders)
     {
         this.orders = orders;
     }
@@ -119,13 +126,6 @@ public class Agents
     @Override
     public String toString()
     {
-        return "Agents{" +
-                "agentCode=" + agentCode +
-                ", agentName='" + agentName + '\'' +
-                ", workingArea='" + workingArea + '\'' +
-                ", commission=" + commission +
-                ", phone='" + phone + '\'' +
-                ", country='" + country + '\'' +
-                '}';
+        return "Agent{" + "agentCode=" + agentCode + ", agentName='" + agentName + '\'' + ", workingArea='" + workingArea + '\'' + ", commission=" + commission + ", phone='" + phone + '\'' + ", country='" + country + '\'' + '}';
     }
 }

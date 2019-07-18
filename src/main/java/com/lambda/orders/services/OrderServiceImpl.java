@@ -1,12 +1,11 @@
 package com.lambda.orders.services;
 
-import com.lambda.orders.model.Agents;
-import com.lambda.orders.model.Customers;
-import com.lambda.orders.model.Orders;
 import com.lambda.orders.repos.OrderRepository;
+import com.lambda.orders.models.Agent;
+import com.lambda.orders.models.Customer;
+import com.lambda.orders.models.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 
@@ -18,34 +17,34 @@ public class OrderServiceImpl implements OrderService
     private OrderRepository orderRepo;
 
     @Override
-    public Customers save(Orders order)
+    public Customer save(Order order)
     {
         return null;
     }
 
     @Override
-    public ArrayList<Orders> findAll()
+    public ArrayList<Order> findAll()
     {
-        ArrayList<Orders> orders = new ArrayList<>();
-        orderRepo.findAll().iterator().forEachRemaining(o -> orders.add(o));
+        ArrayList<Order> orders = new ArrayList<>();
+        orderRepo.findAll().iterator().forEachRemaining(x -> orders.add(x));
 
         return orders;
     }
 
     @Override
-    public ArrayList<Orders> findAllByAgent(Agents agent)
+    public ArrayList<Order> findAllByAgent(Agent agent)
     {
         return null;
     }
 
     @Override
-    public ArrayList<Orders> findAllByCustomer(Customers customer)
+    public ArrayList<Order> findAllByCustomer(Customer customer)
     {
         return null;
     }
 
     @Override
-    public Customers update(Orders order, long ordCode)
+    public Customer update(Order order, long ordCode)
     {
         return null;
     }
