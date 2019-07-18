@@ -24,18 +24,18 @@ public class AgentServiceImpl implements AgentService
     }
 
     @Override
+    public Agents findByCustomer(Customers customer)
+    {
+        return null;
+    }
+
+    @Override
     public ArrayList<Agents> findAll()
     {
         ArrayList<Agents> agents = new ArrayList<>();
         agentRepo.findAll().iterator().forEachRemaining(agent -> agents.add(agent));
 
         return agents;
-    }
-
-    @Override
-    public Agents findByCustomer(Customers customer)
-    {
-        return null;
     }
 
     @Override
